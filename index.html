@@ -1,0 +1,1368 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>溧阳AI城市生活平台</title>
+    <meta
+      name="description"
+      content="溧阳本地生活智能推荐平台，面向居民、游客和商家的真实本地生活信息入口。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="溧阳AI城市生活平台首页">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>溧阳AI生活</span>
+      </a>
+      <nav class="nav-links" aria-label="页面导航">
+        <a href="#home">AI首页</a>
+        <a href="#pulse">呼吸</a>
+        <a href="#ambience">声景</a>
+        <a href="#planner">路线</a>
+        <a href="#assistant">助手</a>
+        <a href="#voice">语音</a>
+        <a href="#live">实时</a>
+        <a href="#discover">发现</a>
+        <a href="#hotrank">热榜</a>
+        <a href="#food">美食</a>
+        <a href="#activities">活动</a>
+        <a href="#community">社区</a>
+        <a href="#map">地图</a>
+        <a href="#privacy">隐私</a>
+        <a href="#culture">文化</a>
+        <a href="#factory">工厂</a>
+        <a href="#business">商家</a>
+        <a href="#trust">安全</a>
+        <a href="#ops">运维</a>
+        <a href="#upgrade">升级</a>
+        <a href="#growth">成长</a>
+        <a href="#theme">主题</a>
+        <a href="#cockpit">驾驶舱</a>
+        <a href="#jobs">就业</a>
+        <a href="#tasks">积分</a>
+        <a href="#alerts">提醒</a>
+        <a href="#services">服务</a>
+        <a href="#reports">日报</a>
+      </nav>
+      <button class="icon-button publish-trigger" type="button" aria-label="发布本地信息" title="发布本地信息">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 5v14M5 12h14" />
+        </svg>
+      </button>
+    </header>
+    <div class="weather-effects" id="weather-effects" aria-hidden="true"></div>
+    <div class="city-barrage" id="city-barrage" aria-live="polite"></div>
+
+    <main class="page-shell">
+      <section id="home" class="ai-home" aria-labelledby="home-title">
+        <div class="home-copy">
+          <p class="eyebrow">AI城市生活入口</p>
+          <h1 id="home-title">溧阳本地生活智能推荐平台</h1>
+          <p>
+            面向居民、游客和本地商家，把今天最常用的入口放在最前面，先解决真实商家、真实活动、真实路线和真实内容的问题。
+          </p>
+          <div class="context-row" aria-label="AI推荐条件">
+            <div class="control-group" aria-label="天气">
+              <button class="pill active" type="button" data-weather="晴天">晴天</button>
+              <button class="pill" type="button" data-weather="雨天">雨天</button>
+              <button class="pill" type="button" data-weather="高温">高温</button>
+              <button class="pill" type="button" data-weather="大风">大风</button>
+            </div>
+            <div class="control-group" aria-label="时间">
+              <button class="pill active" type="button" data-time="上午">上午</button>
+              <button class="pill" type="button" data-time="下午">下午</button>
+              <button class="pill" type="button" data-time="夜间">夜间</button>
+              <button class="pill" type="button" data-time="周末">周末</button>
+            </div>
+          </div>
+          <div class="home-entry-grid" id="home-entry-grid" aria-label="首页核心入口"></div>
+        </div>
+        <aside class="signal-panel" aria-label="AI首页实时推荐">
+          <div class="signal-image" aria-hidden="true"></div>
+          <span class="image-label">AI生成图片，仅供示意</span>
+          <div class="signal-body">
+            <div class="signal-meta">
+              <span id="today-date">今日</span>
+              <span id="season-label">夏季</span>
+              <span>DeepSeek规划位</span>
+            </div>
+            <h2 id="ai-headline">今天适合湖边散步</h2>
+            <p id="ai-summary">阳光和能见度适合在天目湖周边慢走，傍晚加一段城区夜食更稳。</p>
+            <div class="mini-stats">
+              <span><strong id="heat-index">86</strong>城市热度</span>
+              <span><strong id="new-count">12</strong>新增线索</span>
+              <span><strong id="route-count">7</strong>可生成路线</span>
+            </div>
+            <div class="home-note">
+              首页只保留高频入口，历史文化馆、AI城市日报、商家认领、AI拍照识别、游客模式、商家经营助手和成长系统放到后续阶段。
+            </div>
+          </div>
+        </aside>
+        <div class="recommendation-strip" id="recommendation-strip" aria-live="polite"></div>
+      </section>
+
+      <section id="pulse" class="panel wide-panel pulse-panel" aria-labelledby="pulse-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">AI城市呼吸系统</p>
+            <h2 id="pulse-title">页面按早晨、中午、下午、傍晚、夜晚和深夜自动变化</h2>
+          </div>
+          <div class="segmented pulse-segments" id="pulse-segments" aria-label="城市时间段"></div>
+        </div>
+        <div class="pulse-layout">
+          <article class="pulse-stage" id="pulse-stage">
+            <div class="sun-orb" aria-hidden="true"></div>
+            <span class="tag" id="pulse-kicker">早晨</span>
+            <h3 id="pulse-headline">早安，溧阳正在醒来</h3>
+            <p id="pulse-copy">显示日出动画，推荐早餐和晨练路线。</p>
+          </article>
+          <div class="pulse-recos" id="pulse-recos" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="ambience" class="panel wide-panel ambience-panel" aria-labelledby="ambience-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">AI城市环境音系统</p>
+            <h2 id="ambience-title">今日溧阳环境音，默认自动静音，用户主动开启</h2>
+          </div>
+          <div class="segmented ambience-mode" role="tablist" aria-label="环境音模式">
+            <button class="segment" type="button" data-audio-mode="off">关闭</button>
+            <button class="segment active" type="button" data-audio-mode="auto">自动</button>
+            <button class="segment" type="button" data-audio-mode="on">开启</button>
+          </div>
+        </div>
+        <div class="ambience-layout">
+          <article class="ambience-now">
+            <span class="tag" id="ambience-kicker">自动静音</span>
+            <h3 id="ambience-title-current">湖边微风 / 竹林风声</h3>
+            <p id="ambience-copy">根据天气、时间、季节、节日和路线氛围自动选择声景；只有用户主动开启后才播放。</p>
+            <div class="festival-theme" id="festival-theme" aria-live="polite"></div>
+            <div class="ambience-controls">
+              <button class="primary-button" id="play-ambience" type="button">试听声景</button>
+              <button class="secondary-button" id="stop-ambience" type="button">停止</button>
+            </div>
+          </article>
+          <div class="soundscape-map" id="soundscape-map" aria-label="溧阳声音地图"></div>
+        </div>
+      </section>
+
+      <section id="live" class="dashboard-grid live-grid">
+        <article class="panel live-panel" aria-labelledby="live-title">
+          <div class="panel-head inline">
+            <div>
+              <p class="eyebrow">AI实时动态流</p>
+              <h2 id="live-title">新店、活动、打卡、摄影、骑行和热门讨论安静更新</h2>
+            </div>
+            <button class="secondary-button" id="push-live-item" type="button">显示一条新动态</button>
+          </div>
+          <div class="live-feed" id="live-feed" aria-live="polite"></div>
+        </article>
+        <article class="panel achievement-panel" aria-labelledby="achievement-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI城市成就系统</p>
+              <h2 id="achievement-title">新增商家、活动、路线、用户、打卡和社区内容实时增长</h2>
+            </div>
+          </div>
+          <div class="achievement-grid" id="achievement-grid" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article id="planner" class="panel planner-panel" aria-labelledby="planner-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI路线规划</p>
+              <h2 id="planner-title">输入条件，生成溧阳路线</h2>
+            </div>
+          </div>
+          <form class="planner-form" id="planner-form">
+            <label>
+              <span>出发地</span>
+              <input id="route-start" name="start" value="溧阳城区" />
+            </label>
+            <label>
+              <span>人数</span>
+              <input id="route-people" name="people" type="number" min="1" max="20" value="2" />
+            </label>
+            <label>
+              <span>预算</span>
+              <select id="route-budget" name="budget">
+                <option>人均100以内</option>
+                <option selected>人均100-300</option>
+                <option>人均300以上</option>
+              </select>
+            </label>
+            <label>
+              <span>时间</span>
+              <select id="route-duration" name="duration">
+                <option value="半日">半日</option>
+                <option value="一日" selected>一日</option>
+                <option value="两日">两日</option>
+              </select>
+            </label>
+            <label>
+              <span>兴趣</span>
+              <select id="route-interest" name="interest">
+                <option>美食</option>
+                <option selected>湖山</option>
+                <option>亲子</option>
+                <option>骑行</option>
+                <option>露营</option>
+                <option>夜游</option>
+                <option>茶文化</option>
+              </select>
+            </label>
+            <label>
+              <span>路线类型</span>
+              <select id="route-type" name="type">
+                <option value="half">半日路线</option>
+                <option value="day" selected>一日路线</option>
+                <option value="two">两日路线</option>
+                <option value="family">亲子路线</option>
+                <option value="couple">情侣路线</option>
+                <option value="cycling">骑行路线</option>
+                <option value="photo">摄影路线</option>
+                <option value="rainy">雨天路线</option>
+                <option value="night">夜游路线</option>
+                <option value="camping">露营路线</option>
+                <option value="weekend">周末路线</option>
+                <option value="holiday">节假日路线</option>
+              </select>
+            </label>
+            <button class="primary-button" type="submit">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 18 15 6M6 9l3-3 3 3M12 15l3 3 3-3" />
+              </svg>
+              生成路线
+            </button>
+          </form>
+          <div class="route-thinking" id="route-thinking" aria-live="polite"></div>
+          <div class="route-output" id="route-output" aria-live="polite"></div>
+        </article>
+
+        <article id="assistant" class="panel assistant-panel" aria-labelledby="assistant-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI本地助手</p>
+              <h2 id="assistant-title">问溧阳怎么玩、吃什么、去哪里</h2>
+            </div>
+          </div>
+          <div class="quick-questions" aria-label="常见问题">
+            <button type="button" data-question="溧阳哪里好吃？">好吃</button>
+            <button type="button" data-question="哪里适合散步？">散步</button>
+            <button type="button" data-question="哪里停车方便？">停车</button>
+            <button type="button" data-question="哪里适合带孩子？">亲子</button>
+            <button type="button" data-question="哪个农家乐值得去？">农家乐</button>
+            <button type="button" data-question="哪里适合约会？">约会</button>
+            <button type="button" data-question="哪里适合露营？">露营</button>
+            <button type="button" data-question="附近有什么推荐？">附近推荐</button>
+            <button type="button" data-question="周末有什么活动？">周末活动</button>
+          </div>
+          <div class="assistant-media" aria-label="输入方式">
+            <label class="media-button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <circle cx="8.5" cy="10" r="1.5" />
+                <path d="m21 15-5-5L5 19" />
+              </svg>
+              图片
+              <input id="assistant-image" type="file" accept="image/*" />
+            </label>
+            <button class="media-button" id="voice-button" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3" />
+              </svg>
+              语音
+            </button>
+            <span>文本 / 图片 / 语音</span>
+          </div>
+          <div class="chat-window" id="chat-window" aria-live="polite"></div>
+          <form class="assistant-form" id="assistant-form">
+            <input id="assistant-input" placeholder="问：哪里适合夜游城区？" autocomplete="off" />
+            <button class="icon-button" type="submit" aria-label="发送">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m22 2-7 20-4-9-9-4Z" />
+                <path d="M22 2 11 13" />
+              </svg>
+            </button>
+          </form>
+        </article>
+      </section>
+
+      <section id="voice" class="dashboard-grid voice-guide-grid">
+        <article class="panel voice-panel" aria-labelledby="voice-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI语音欢迎与唤醒</p>
+              <h2 id="voice-title">打开网站，就有会说话的溧阳AI生活助手</h2>
+            </div>
+          </div>
+          <div class="voice-controls">
+            <label>
+              <span>播报语言</span>
+              <select id="voice-language">
+                <option value="zh-CN">中文</option>
+                <option value="en-US">English</option>
+                <option value="ja-JP">日本語</option>
+                <option value="ko-KR">한국어</option>
+              </select>
+            </label>
+            <button class="primary-button" type="button" id="play-welcome">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 3v18l15-9Z" />
+              </svg>
+              播放欢迎语
+            </button>
+            <button class="secondary-button" type="button" id="toggle-voice">关闭自动语音</button>
+          </div>
+          <div class="wake-phrases" aria-label="语音唤醒词">
+            <button type="button" data-wake="小溧小溧">小溧小溧</button>
+            <button type="button" data-wake="溧阳助手">溧阳助手</button>
+            <button type="button" data-wake="你好溧阳">你好溧阳</button>
+          </div>
+          <div class="voice-task-grid">
+            <span>问美食</span>
+            <span>问路线</span>
+            <span>问活动</span>
+            <span>问停车</span>
+            <span>问天气</span>
+            <span>问亲子</span>
+            <span>问露营</span>
+            <span>问夜宵</span>
+            <span>问商家电话</span>
+            <span>问附近推荐</span>
+          </div>
+          <div class="voice-status" id="voice-status" aria-live="polite">
+            首次进入可播放欢迎语；自动语音可关闭，避免打扰。
+          </div>
+        </article>
+
+        <article class="panel digital-human-panel" aria-labelledby="guide-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI数字人导游</p>
+              <h2 id="guide-title">多角色讲解、问答、路线和商家推荐</h2>
+            </div>
+          </div>
+          <div class="guide-stage">
+            <div class="guide-avatar" id="guide-avatar" aria-hidden="true">溧</div>
+            <div>
+              <p class="eyebrow" id="guide-role-kicker">溧阳AI导游</p>
+              <h3 id="guide-role-title">今天我可以带你认识天目湖、竹海和白茶文化。</h3>
+              <p id="guide-role-copy">可语音讲解景点、回答游客问题、生成路线、介绍商家和推荐活动。</p>
+            </div>
+          </div>
+          <div class="role-chips" id="guide-roles" aria-label="数字人角色"></div>
+          <button class="secondary-button" type="button" id="guide-speak">讲解一段</button>
+        </article>
+      </section>
+
+      <section id="discover" class="panel wide-panel" aria-labelledby="discover-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">本地发现</p>
+            <h2 id="discover-title">今日、本周、本月推荐</h2>
+          </div>
+          <div class="segmented" role="tablist" aria-label="发现周期">
+            <button class="segment active" type="button" data-discover="today">今日推荐</button>
+            <button class="segment" type="button" data-discover="week">本周热门</button>
+            <button class="segment" type="button" data-discover="month">本月推荐</button>
+          </div>
+        </div>
+        <div class="card-grid four" id="discover-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="hotrank" class="panel wide-panel" aria-labelledby="hotrank-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">AI城市热榜</p>
+            <h2 id="hotrank-title">今日热门路线、活动、餐厅、咖啡馆、打卡点、社区话题</h2>
+          </div>
+        </div>
+        <div class="card-grid four">
+          <article class="info-card" style="--accent:#1f7481">
+            <span class="tag">路线</span>
+            <h3>天目湖黄昏散步线</h3>
+            <p>收藏和搜索同步上升，适合晴天傍晚。</p>
+          </article>
+          <article class="info-card" style="--accent:#426d45">
+            <span class="tag">活动</span>
+            <h3>周末茶文化体验</h3>
+            <p>亲子和游客都适合，推荐提前预约。</p>
+          </article>
+          <article class="info-card" style="--accent:#b95d3b">
+            <span class="tag">餐厅</span>
+            <h3>城区砂锅小馆</h3>
+            <p>雨天、夜间和朋友聚餐热度高。</p>
+          </article>
+          <article class="info-card" style="--accent:#386f9d">
+            <span class="tag">咖啡馆</span>
+            <h3>白茶咖啡窗口</h3>
+            <p>适合拍照、骑行补给和下午短停。</p>
+          </article>
+          <article class="info-card" style="--accent:#909d36">
+            <span class="tag">打卡点</span>
+            <h3>茶田公路转角</h3>
+            <p>下午光线更稳，适合轻量路线。</p>
+          </article>
+          <article class="info-card" style="--accent:#7562a8">
+            <span class="tag">社区话题</span>
+            <h3>骑行补给地图共建</h3>
+            <p>骑友、商家和社区可持续补充点位。</p>
+          </article>
+        </div>
+        <div class="dynamic-rank-list" id="dynamic-rank-list" aria-live="polite"></div>
+        <p class="fair-note">热榜依据浏览量、收藏量、导航次数、报名人数、用户反馈和社区互动自动生成；严禁购买排名、严禁刷榜。</p>
+      </section>
+
+      <section id="food" class="panel wide-panel food-panel" aria-labelledby="food-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">美食地图</p>
+            <h2 id="food-title">早餐、面馆、砂锅、咖啡、夜宵和农家乐</h2>
+          </div>
+        </div>
+        <div class="food-layout">
+          <div>
+            <div class="chip-row" id="food-categories" aria-label="美食类别"></div>
+            <div class="food-list" id="food-list" aria-live="polite"></div>
+          </div>
+          <form class="food-reco" id="food-form">
+            <h3>AI美食推荐</h3>
+            <label>
+              <span>用餐时间</span>
+              <select name="time">
+                <option>早餐</option>
+                <option selected>午餐</option>
+                <option>晚餐</option>
+                <option>夜宵</option>
+              </select>
+            </label>
+            <label>
+              <span>人数</span>
+              <input name="people" type="number" min="1" max="20" value="3" />
+            </label>
+            <label>
+              <span>预算</span>
+              <select name="budget">
+                <option>人均50以内</option>
+                <option selected>人均50-120</option>
+                <option>人均120以上</option>
+              </select>
+            </label>
+            <button class="secondary-button" type="submit">生成美食建议</button>
+            <div class="food-result" id="food-result" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+
+      <section id="activities" class="panel wide-panel" aria-labelledby="activity-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">周末活动</p>
+            <h2 id="activity-title">亲子、露营、市集、音乐、茶文化、农场、骑行</h2>
+          </div>
+          <div class="segmented" role="tablist" aria-label="活动推荐">
+            <button class="segment active" type="button" data-activity="today">今日</button>
+            <button class="segment" type="button" data-activity="weekend">周末</button>
+            <button class="segment" type="button" data-activity="holiday">节假日</button>
+            <button class="segment" type="button" data-activity="rain">雨天</button>
+            <button class="segment" type="button" data-activity="night">夜间</button>
+          </div>
+        </div>
+        <div class="card-grid three" id="activity-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="community" class="panel wide-panel" aria-labelledby="community-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">本地社区</p>
+            <h2 id="community-title">美食、摄影、骑行、露营、亲子、二手、招聘、拼车</h2>
+          </div>
+          <button class="primary-button publish-trigger" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            发布
+          </button>
+        </div>
+        <div class="chip-row" id="community-categories" aria-label="社区类别"></div>
+        <div class="community-list" id="community-list" aria-live="polite"></div>
+      </section>
+
+      <section id="map" class="panel wide-panel map-panel" aria-labelledby="map-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">AI公共地图系统</p>
+            <h2 id="map-title">只展示公共地点和授权地点，不展示用户在哪里</h2>
+          </div>
+          <div class="chip-row compact" id="map-filters" aria-label="地图筛选"></div>
+        </div>
+        <div class="map-canvas" id="map-canvas" aria-label="溧阳数字地图点位"></div>
+        <div class="map-privacy-note">
+          <strong>地图原则：只做公共点位地图，不做人在哪里的地图。</strong>
+          <span>用户定位仅用于本机附近推荐、附近商家、附近活动和附近停车场，不默认上传服务器，不公开展示。</span>
+        </div>
+        <div class="map-rule-grid">
+          <article class="policy-card">
+            <strong>可展示点位</strong>
+            <p>商家、景区、停车场、厕所、充电桩、公交站、露营点、骑行补给点、活动地点、社区公共点位、医院、学校、民宿、咖啡馆、夜宵点和游客服务中心。</p>
+          </article>
+          <article class="policy-card">
+            <strong>禁止展示内容</strong>
+            <p>用户实时位置、历史轨迹、家庭住址、公司地址、拼车双方精确位置、未公开个人电话、未成年人位置和默认公开打卡位置。</p>
+          </article>
+          <article class="policy-card">
+            <strong>打卡展示规则</strong>
+            <p>用户打卡只展示“天目湖附近”“南山竹海附近”“城区夜市附近”等模糊区域，不展示精确坐标和行走轨迹。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="privacy" class="panel wide-panel privacy-panel" aria-labelledby="privacy-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">地图隐私与数据安全</p>
+            <h2 id="privacy-title">公共点位、授权商家、本机定位、国内存储</h2>
+          </div>
+        </div>
+        <div class="privacy-principle">
+          <strong>平台定位：AI + 本地生活 + 地图 + 商家 + 路线 + 社区 + 城市服务。</strong>
+          <span>隐私底线：附近推荐可以更聪明，但个人位置不能被默认公开。</span>
+        </div>
+        <div class="privacy-grid">
+          <article class="policy-card">
+            <strong>用户定位规则</strong>
+            <p>定位仅用于附近推荐、附近商家、附近活动和附近停车场，默认仅在本机使用，不公开、不默认上传服务器。</p>
+          </article>
+          <article class="policy-card">
+            <strong>敏感信息隐藏</strong>
+            <p>默认隐藏手机号、微信号、身份证号、车牌号、详细住址和未成年人信息，未经授权不得公开展示。</p>
+          </article>
+          <article class="policy-card">
+            <strong>商家信息来源</strong>
+            <p>商家资料必须来自商家主动提交、商家授权发布或公开可靠渠道；商家拥有修改权、更正权和删除申请权。</p>
+          </article>
+          <article class="policy-card">
+            <strong>社区安全机制</strong>
+            <p>招聘、拼车、二手交易、商家推广和活动发布需实名认证、AI风险识别、内容审核和人工复核，实名信息仅用于审核。</p>
+          </article>
+          <article class="policy-card">
+            <strong>国内数据存储</strong>
+            <p>用户数据仅存储于中国大陆境内服务器，优先采用阿里云、腾讯云、华为云、中国电信云或中国移动云，不进行跨境传输。</p>
+          </article>
+          <article class="policy-card">
+            <strong>账号注销与数据导出</strong>
+            <p>用户可申请注销账号，平台在7个工作日内删除相关个人数据；用户可导出资料、收藏、发布内容、打卡和积分记录。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="culture" class="panel wide-panel culture-panel" aria-labelledby="culture-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">AI城市历史文化馆</p>
+            <h2 id="culture-title">溧阳历史、天目湖、南山竹海、白茶文化和城市故事</h2>
+          </div>
+          <div class="chip-row compact" id="culture-themes" aria-label="首页壁纸主题"></div>
+        </div>
+        <div class="culture-layout">
+          <article class="culture-feature" id="culture-feature">
+            <span class="tag">天目湖主题</span>
+            <h3>天目湖发展故事</h3>
+            <p>AI可生成历史人物介绍、城市故事讲解、短视频文案、图文内容和语音讲解。</p>
+          </article>
+          <div class="culture-grid" id="culture-grid"></div>
+        </div>
+        <div class="history-plus-grid">
+          <article class="historical-figure" id="historical-figure" aria-live="polite">
+            <span class="tag">AI历史人物复活计划</span>
+            <h3>今日历史讲述者</h3>
+            <p>AI会随机出现历史人物，讲述城市故事、文化知识和历史事件。</p>
+          </article>
+          <article class="time-machine" aria-labelledby="time-machine-title">
+            <div class="panel-head inline">
+              <div>
+                <p class="eyebrow">AI城市时间机器</p>
+                <h3 id="time-machine-title">1950 到 2026 的城市变化</h3>
+              </div>
+            </div>
+            <div class="timeline-years" id="timeline-years"></div>
+            <div class="timeline-story" id="timeline-story" aria-live="polite"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="factory" class="dashboard-grid factory-grid">
+        <article class="panel companion-panel" aria-labelledby="companion-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI玩偶与城市吉祥物</p>
+              <h2 id="companion-title">选择一个会跟随、提醒和推荐的AI伙伴</h2>
+            </div>
+          </div>
+          <div class="companion-stage">
+            <div class="companion-avatar" id="companion-avatar">小溧</div>
+            <div>
+              <h3 id="companion-name">溧阳城市吉祥物“小溧”</h3>
+              <p id="companion-message">今天比较热，建议选择竹海避暑路线。</p>
+            </div>
+          </div>
+          <div class="role-chips" id="companion-options" aria-label="AI伙伴选择"></div>
+          <button class="secondary-button" type="button" id="companion-remind">给我一个提醒</button>
+        </article>
+
+        <article class="panel page-factory-panel" aria-labelledby="factory-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI全民页面工厂</p>
+              <h2 id="factory-title">普通用户一句话生成频道、页面和草稿</h2>
+            </div>
+          </div>
+          <form class="page-factory-form" id="page-factory-form">
+            <label>
+              <span>页面需求</span>
+              <input name="prompt" value="我想做一个溧阳夜宵地图" />
+            </label>
+            <button class="primary-button" type="submit">生成页面草稿</button>
+          </form>
+          <div class="factory-output" id="factory-output" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section id="deepseek" class="panel wide-panel" aria-labelledby="deepseek-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">DeepSeek大模型接入</p>
+            <h2 id="deepseek-title">路线、助手、日报、活动、美食、审核、商家运营统一走AI能力层</h2>
+          </div>
+          <span class="ai-badge">AI生成内容 / 仅供参考</span>
+        </div>
+        <div class="card-grid four">
+          <article class="info-card" style="--accent:#1f7481">
+            <span class="tag">AI路线规划</span>
+            <h3>按人数、预算、兴趣生成路线</h3>
+            <p>半日、一日、两日、亲子、情侣、骑行、摄影、雨天、夜游均可生成。</p>
+          </article>
+          <article class="info-card" style="--accent:#426d45">
+            <span class="tag">AI本地助手</span>
+            <h3>问答、图片、语音入口</h3>
+            <p>用于回答吃什么、去哪里、活动怎么选和路线怎么走。</p>
+          </article>
+          <article class="info-card" style="--accent:#b95d3b">
+            <span class="tag">AI内容审核</span>
+            <h3>识别诈骗、违规、广告和风险</h3>
+            <p>招聘、拼车、二手、社区帖子、商家内容进入审核队列。</p>
+          </article>
+          <article class="info-card" style="--accent:#7562a8">
+            <span class="tag">AI商家助手</span>
+            <h3>生成文案、海报、SEO和短视频脚本</h3>
+              <p>帮助本地商家持续更新活动和获客内容。</p>
+            </article>
+          <article class="info-card" style="--accent:#386f9d">
+            <span class="tag">AI语音助手</span>
+            <h3>欢迎语、唤醒词、多语言游客服务</h3>
+            <p>用于手机、电脑和平板端的语音提示、语音问答和导游讲解。</p>
+          </article>
+          <article class="info-card" style="--accent:#909d36">
+            <span class="tag">AI页面生成</span>
+            <h3>全民页面工厂和商家官网生成器</h3>
+            <p>普通用户生成个人草稿，公共页面改动进入管理员确认。</p>
+          </article>
+          <article class="info-card" style="--accent:#efbd58">
+            <span class="tag">AI城市服务</span>
+            <h3>就业、任务积分、应急提醒、公共服务入口</h3>
+            <p>预留未来城市服务能力，并提示用户以可靠来源为准。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="business" class="panel wide-panel business-panel" aria-labelledby="business-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">AI商家中心</p>
+            <h2 id="business-title">店铺主页、活动页面、菜单产品、优惠和推广内容一站生成</h2>
+          </div>
+        </div>
+        <div class="business-layout">
+          <form class="merchant-form" id="merchant-form">
+            <label>
+              <span>店铺名称</span>
+              <input name="name" value="溧阳白茶小馆" />
+            </label>
+            <label>
+              <span>类型</span>
+              <select name="type">
+                <option>餐饮商家</option>
+                <option>咖啡甜品</option>
+                <option>农家乐</option>
+                <option>活动主办方</option>
+                <option>民宿营地</option>
+              </select>
+            </label>
+            <label>
+              <span>特色</span>
+              <input name="feature" value="白茶饮品、茶田路线、亲子友好" />
+            </label>
+            <label>
+              <span>活动/优惠</span>
+              <input name="promo" value="周末双人套餐，预约送白茶甜品" />
+            </label>
+            <label>
+              <span>电话</span>
+              <input name="phone" value="0519-0000-0000" />
+            </label>
+            <label>
+              <span>地址</span>
+              <input name="address" value="溧阳城区近天目湖方向" />
+            </label>
+            <label>
+              <span>营业时间</span>
+              <input name="hours" value="09:30-21:00" />
+            </label>
+            <label>
+              <span>停车信息</span>
+              <input name="parking" value="门口少量车位，周末建议电话确认" />
+            </label>
+            <label>
+              <span>友好标签</span>
+              <select name="friendly">
+                <option>亲子友好</option>
+                <option>宠物友好</option>
+                <option>亲子与宠物友好</option>
+                <option>需提前咨询</option>
+              </select>
+            </label>
+            <button class="primary-button" type="submit">生成商家内容</button>
+          </form>
+          <div class="merchant-output" id="merchant-output" aria-live="polite"></div>
+        </div>
+        <div class="business-rule-grid">
+          <article class="policy-card">
+            <strong>商家入驻范围</strong>
+            <p>支持餐饮、咖啡馆、夜宵、农家乐、民宿、景区、露营地、亲子机构和本地服务商家。</p>
+          </article>
+          <article class="policy-card">
+            <strong>商家资料规则</strong>
+            <p>店铺地址、电话、营业时间和菜单信息需由商家主动提交、授权发布或来自公开可靠渠道。</p>
+          </article>
+          <article class="policy-card">
+            <strong>商家权利</strong>
+            <p>商家拥有修改权、更正权和删除申请权；资料过期时平台降低推荐权重并提醒复核。</p>
+          </article>
+          <article class="policy-card">
+            <strong>AI推广透明</strong>
+            <p>AI可生成百度、抖音、微信、小红书推广文案和短视频脚本；合作推广必须明确标注。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="trust" class="panel wide-panel trust-panel" aria-labelledby="trust-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">AI审核中心与可信机制</p>
+            <h2 id="trust-title">认证、实名、信用、安全、隐私和公平机制</h2>
+          </div>
+        </div>
+        <div class="trust-layout">
+          <form class="audit-form" id="audit-form">
+            <h3>AI风险识别演示</h3>
+            <label>
+              <span>内容类型</span>
+              <select name="type">
+                <option>招聘信息</option>
+                <option>拼车信息</option>
+                <option>二手交易</option>
+                <option>社区帖子</option>
+                <option>商家内容</option>
+              </select>
+            </label>
+            <label>
+              <span>待审核内容</span>
+              <textarea name="content">高薪兼职，先交保证金，拉人有奖励。</textarea>
+            </label>
+            <button class="secondary-button" type="submit">开始审核</button>
+            <div class="audit-result" id="audit-result" aria-live="polite"></div>
+          </form>
+          <div class="trust-grid">
+            <article class="policy-card">
+              <strong>企业认证</strong>
+              <p>营业执照、联系电话、门店照片审核通过后显示企业认证。</p>
+            </article>
+            <article class="policy-card">
+              <strong>食品安全认证</strong>
+              <p>餐饮商家提交食品经营许可证，通过后显示食品安全认证。</p>
+            </article>
+            <article class="policy-card">
+              <strong>官方活动认证</strong>
+              <p>活动主办方提交单位资料和活动证明，通过后显示官方活动。</p>
+            </article>
+            <article class="policy-card">
+              <strong>用户实名认证</strong>
+              <p>招聘、拼车、二手交易、活动发布、商家入驻发布前需实名。</p>
+            </article>
+            <article class="policy-card">
+              <strong>用户信用体系</strong>
+              <p>按举报次数、内容质量、活跃度和认证情况生成 LV1-LV4。</p>
+            </article>
+            <article class="policy-card">
+              <strong>交易与出行安全</strong>
+              <p>禁止刷单、资金盘、虚拟币拉人、假货、违禁品和高风险拼车。</p>
+            </article>
+            <article class="policy-card">
+              <strong>隐私与数据安全</strong>
+              <p>默认不公开手机号、身份证和精确住址，支持注销、删除和导出数据。</p>
+            </article>
+            <article class="policy-card">
+              <strong>热榜公平机制</strong>
+              <p>热榜按浏览、收藏、点赞、反馈自动生成，不接受付费刷榜。</p>
+            </article>
+            <article class="policy-card">
+              <strong>AI审核中心</strong>
+              <p>自动识别招聘诈骗、保证金骗局、拉人头推广、资金盘、虚拟币诈骗、虚假宣传、违禁品交易和恶意广告。</p>
+            </article>
+            <article class="policy-card">
+              <strong>高风险人工复核</strong>
+              <p>高风险内容自动进入人工审核队列；涉及封禁、资质状态、法律风险和商业排序必须管理员确认。</p>
+            </article>
+            <article class="policy-card">
+              <strong>国内存储与不跨境</strong>
+              <p>用户账号、定位、社区、商家、活动和运营数据仅存储于中国大陆境内服务器，不进行跨境传输。</p>
+            </article>
+            <article class="policy-card">
+              <strong>账号注销机制</strong>
+              <p>用户可随时申请注销账号，平台在收到申请后7个工作日内删除相关个人数据。</p>
+            </article>
+            <article class="policy-card">
+              <strong>个人数据导出</strong>
+              <p>支持导出用户资料、收藏记录、发布内容、打卡记录和积分记录。</p>
+            </article>
+            <article class="policy-card">
+              <strong>公共地图边界</strong>
+              <p>地图仅展示公共点位和授权点位，不展示用户实时位置、历史轨迹和未成年人位置。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="ops" class="panel wide-panel ops-panel" aria-labelledby="ops-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">AI平台安全治理与自动运维系统</p>
+            <h2 id="ops-title">审核、复核、监控、修复、备份、防护和灾备统一管理</h2>
+          </div>
+          <span class="ai-badge">管理员最终确认</span>
+        </div>
+
+        <div class="ops-status-grid">
+          <article>
+            <strong>99.98%</strong>
+            <span>平台可用性</span>
+          </article>
+          <article>
+            <strong>18</strong>
+            <span>待审核商家</span>
+          </article>
+          <article>
+            <strong>7</strong>
+            <span>人工复核</span>
+          </article>
+          <article>
+            <strong>3</strong>
+            <span>自动修复中</span>
+          </article>
+          <article>
+            <strong>今日完成</strong>
+            <span>增量备份</span>
+          </article>
+          <article>
+            <strong>正常</strong>
+            <span>DeepSeek服务</span>
+          </article>
+        </div>
+
+        <div class="ops-layout">
+          <article class="ops-console">
+            <div class="console-head">
+              <span class="tag">AI商家入驻审核中心</span>
+              <strong>资料提交后进入 AI + 人工双重审核队列</strong>
+            </div>
+            <div class="review-flow" aria-label="三级审核流程">
+              <span>AI审核</span>
+              <span>人工复核</span>
+              <span>最终确认</span>
+            </div>
+            <div class="checklist-grid">
+              <span>店铺名称</span>
+              <span>营业执照</span>
+              <span>联系方式</span>
+              <span>地址信息</span>
+              <span>经营范围</span>
+              <span>商品信息</span>
+              <span>活动内容</span>
+              <span>推广文案</span>
+              <span>图片内容</span>
+            </div>
+            <p class="service-note">AI自动完成完整性检查、虚假信息识别、重复商家识别、风险关键词识别、广告违规识别、图片违规识别和联系方式校验；高风险内容由管理员最终确认。</p>
+          </article>
+
+          <article class="ops-console">
+            <div class="console-head">
+              <span class="tag">人工复核机制</span>
+              <strong>以下内容自动进入人工复核队列</strong>
+            </div>
+            <div class="review-queue">
+              <article>
+                <strong>高风险内容</strong>
+                <p>招聘、拼车、二手交易、金融推广、医疗宣传、教育培训和涉及收费活动。</p>
+              </article>
+              <article>
+                <strong>AI置信度不足</strong>
+                <p>当AI判断准确率较低时，不自动放行，转入人工复核。</p>
+              </article>
+              <article>
+                <strong>用户投诉内容</strong>
+                <p>被举报内容自动冻结展示并进入复核队列。</p>
+              </article>
+              <article>
+                <strong>商家申诉内容</strong>
+                <p>商家认为被误判时可发起申诉，由管理员最终确认。</p>
+              </article>
+            </div>
+          </article>
+        </div>
+
+        <div class="ops-section-grid">
+          <article class="policy-card">
+            <strong>AI风险识别系统</strong>
+            <p>识别招聘诈骗、保证金骗局、拉人头推广、资金盘、非法集资、虚拟币诈骗、色情内容、赌博信息、违禁品交易、恶意广告和虚假宣传。</p>
+          </article>
+          <article class="policy-card">
+            <strong>风险处理动作</strong>
+            <p>发现异常后自动降权、隐藏、暂停展示并进入人工审核，高风险内容不得由AI直接最终放行。</p>
+          </article>
+          <article class="policy-card">
+            <strong>服务器健康监控</strong>
+            <p>全天候监控CPU、内存、磁盘、网络、数据库、API、DeepSeek服务和地图服务状态。</p>
+          </article>
+          <article class="policy-card">
+            <strong>AI异常检测</strong>
+            <p>自动检测服务异常、数据异常、接口异常、数据库异常、文件丢失和配置错误，并生成修复建议。</p>
+          </article>
+        </div>
+
+        <div class="ops-dashboard-grid">
+          <article class="ops-console">
+            <h3>AI自动修复中心</h3>
+            <div class="ops-list">
+              <span>服务中断：自动重启服务</span>
+              <span>数据库异常：切换备用数据库</span>
+              <span>接口超时：切换备用接口</span>
+              <span>缓存异常：自动清理缓存</span>
+              <span>配置错误：恢复最近稳定配置</span>
+              <span>无法自动修复：立即通知管理员</span>
+            </div>
+          </article>
+          <article class="ops-console">
+            <h3>数据备份与恢复</h3>
+            <div class="ops-list">
+              <span>每日增量备份</span>
+              <span>每周完整备份</span>
+              <span>每月归档备份</span>
+              <span>本地服务器 + 云端对象存储 + 异地灾备</span>
+              <span>支持单数据、商家数据、全站和指定时间点恢复</span>
+            </div>
+          </article>
+          <article class="ops-console">
+            <h3>网站安全防护中心</h3>
+            <div class="ops-list">
+              <span>WAF拦截SQL注入、XSS、CC攻击、恶意扫描和暴力破解</span>
+              <span>异常流量自动限流</span>
+              <span>DDoS恶意流量清洗</span>
+              <span>IP信誉系统限制黑名单IP、恶意代理IP和风险设备</span>
+            </div>
+          </article>
+          <article class="ops-console">
+            <h3>云厂商安全服务接入</h3>
+            <div class="ops-list">
+              <span>阿里云安全中心</span>
+              <span>腾讯云安全中心</span>
+              <span>华为云安全服务</span>
+              <span>中国电信云安全服务</span>
+              <span>入侵检测、漏洞扫描、风险告警、主机防护、数据加密和安全审计</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="ops-cockpit">
+          <div>
+            <p class="eyebrow">AI运维驾驶舱</p>
+            <h3>系统、安全、数据和商家状态实时展示</h3>
+          </div>
+          <div class="ops-metrics">
+            <article><strong>正常</strong><span>服务器运行状态</span></article>
+            <article><strong>正常</strong><span>数据库状态</span></article>
+            <article><strong>正常</strong><span>AI服务状态</span></article>
+            <article><strong>正常</strong><span>地图服务状态</span></article>
+            <article><strong>42</strong><span>今日攻击拦截</span></article>
+            <article><strong>5</strong><span>异常流量</span></article>
+            <article><strong>12</strong><span>风险内容</span></article>
+            <article><strong>2</strong><span>封禁记录</span></article>
+            <article><strong>完成</strong><span>今日备份</span></article>
+            <article><strong>0</strong><span>最近恢复记录</span></article>
+            <article><strong>18</strong><span>新增商家</span></article>
+            <article><strong>7</strong><span>待复核内容</span></article>
+          </div>
+        </div>
+
+        <div class="disaster-plan">
+          <strong>平台灾难恢复机制</strong>
+          <p>当发生服务器宕机、数据损坏、网络攻击或云服务故障时，平台自动切换备用服务器，恢复数据库、配置文件、地图服务和AI服务，确保快速恢复运行。</p>
+        </div>
+
+        <div class="public-access-plan">
+          <strong>公网访问部署模式</strong>
+          <p>本网站是静态前端，可部署到中国大陆云服务器、对象存储静态网站、CDN或企业官网服务器。部署后，不同 Wi-Fi、移动网络、手机和电脑都可通过域名或公网IP访问；本机 192.168.x.x 地址仅适合同一局域网预览。</p>
+        </div>
+      </section>
+
+      <section id="upgrade" class="panel wide-panel upgrade-panel" aria-labelledby="upgrade-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">AI主动升级系统</p>
+            <h2 id="upgrade-title">自动发现问题、自动提出建议、自动更新内容，重要改动人工确认</h2>
+          </div>
+          <button class="primary-button" type="button" id="run-upgrade-scan">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 12a9 9 0 1 1-3-6.7" />
+              <path d="M21 3v6h-6" />
+            </svg>
+            运行今日扫描
+          </button>
+        </div>
+        <div class="upgrade-overview">
+          <article>
+            <strong id="upgrade-auto-count">0</strong>
+            <span>可自动更新</span>
+          </article>
+          <article>
+            <strong id="upgrade-review-count">0</strong>
+            <span>需人工确认</span>
+          </article>
+          <article>
+            <strong id="upgrade-risk-count">0</strong>
+            <span>风险提醒</span>
+          </article>
+          <article>
+            <strong id="upgrade-week-count">1</strong>
+            <span>AI产品周报</span>
+          </article>
+        </div>
+        <div class="upgrade-layout">
+          <div class="upgrade-console">
+            <h3>今日自动发现问题</h3>
+            <div id="upgrade-issues" class="issue-list" aria-live="polite"></div>
+          </div>
+          <div class="upgrade-console">
+            <h3>AI优化建议与确认队列</h3>
+            <div id="upgrade-actions" class="action-list" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="upgrade-scope-grid">
+          <article class="policy-card">
+            <strong>自动升级内容</strong>
+            <p>首页推荐、今日路线、美食推荐、活动排序、城市日报、城市周报、地图点位和用户体验文案可自动生成更新草案。</p>
+          </article>
+          <article class="policy-card">
+            <strong>自动内容更新</strong>
+            <p>根据天气变化、节假日、周末、本地活动、新店信息、社区热度和商家更新，自动调整推荐内容。</p>
+          </article>
+          <article class="policy-card">
+            <strong>自动版本迭代</strong>
+            <p>每周生成问题总结、用户行为分析、功能优化建议、页面改版建议、商家运营建议和风险治理建议。</p>
+          </article>
+          <article class="policy-card">
+            <strong>人工确认机制</strong>
+            <p>商业推荐排序、热榜规则、商家资质、用户封禁、法律风险内容和大规模页面改版必须管理员确认后执行。</p>
+          </article>
+        </div>
+        <div class="product-weekly">
+          <div>
+            <p class="eyebrow">AI产品周报</p>
+            <h3>本周平台迭代方向</h3>
+          </div>
+          <div id="product-weekly-report"></div>
+        </div>
+      </section>
+
+      <section id="growth" class="panel wide-panel growth-panel" aria-labelledby="growth-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">AI城市成长系统</p>
+            <h2 id="growth-title">平台按用户、商家、活动、路线和社区活跃度自动升级</h2>
+          </div>
+          <span class="level-badge" id="city-level">Lv5 AI城市OS</span>
+        </div>
+        <div class="growth-layout">
+          <article class="growth-meter">
+            <div class="growth-ring" id="growth-ring"><span id="growth-score">92</span></div>
+            <h3 id="growth-name">城市生命力 92%</h3>
+            <p>从信息平台、生活平台、智慧城市平台、AI城市平台，成长到 AI城市OS。</p>
+          </article>
+          <div class="growth-levels" id="growth-levels"></div>
+        </div>
+      </section>
+
+      <section id="theme" class="dashboard-grid theme-emotion-grid">
+        <article class="panel theme-panel" aria-labelledby="theme-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI个性化主题系统</p>
+              <h2 id="theme-title">每个用户都可以定制自己的溧阳首页</h2>
+            </div>
+          </div>
+          <div class="theme-controls">
+            <label>
+              <span>主题颜色</span>
+              <select id="theme-color">
+                <option value="default">湖山绿</option>
+                <option value="blue">天目湖蓝</option>
+                <option value="night">城市夜景</option>
+                <option value="tea">白茶金</option>
+              </select>
+            </label>
+            <label>
+              <span>字体大小</span>
+              <select id="font-scale">
+                <option value="normal">标准</option>
+                <option value="large">更大</option>
+                <option value="compact">紧凑</option>
+              </select>
+            </label>
+            <button class="primary-button" id="apply-theme" type="button">应用主题</button>
+          </div>
+          <p class="service-note">可定制主题颜色、背景图片、首页布局、AI玩偶、数字人、字体大小和功能入口。</p>
+        </article>
+        <article class="panel emotion-panel" aria-labelledby="emotion-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI情绪感知系统</p>
+              <h2 id="emotion-title">根据搜索和点击行为实现千人千面</h2>
+            </div>
+          </div>
+          <div class="emotion-output" id="emotion-output"></div>
+        </article>
+      </section>
+
+      <section id="cockpit" class="panel wide-panel cockpit-panel" aria-labelledby="cockpit-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">AI城市驾驶舱</p>
+            <h2 id="cockpit-title">适用于政府、景区、商场和运营中心的城市大屏模式</h2>
+          </div>
+          <button class="secondary-button" id="refresh-cockpit" type="button">刷新大屏数据</button>
+        </div>
+        <div class="cockpit-grid" id="cockpit-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="jobs" class="dashboard-grid service-grid">
+        <article class="panel jobs-panel" aria-labelledby="jobs-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI就业中心</p>
+              <h2 id="jobs-title">本地招聘、简历生成、面试模拟和求职防骗</h2>
+            </div>
+          </div>
+          <form class="jobs-form" id="jobs-form">
+            <label>
+              <span>求职方向</span>
+              <select name="role">
+                <option>服务业</option>
+                <option>制造业</option>
+                <option>咖啡餐饮</option>
+                <option>亲子活动运营</option>
+                <option>本地商家短视频</option>
+              </select>
+            </label>
+            <label>
+              <span>经验</span>
+              <input name="experience" value="2年服务经验，熟悉本地生活" />
+            </label>
+            <button class="primary-button" type="submit">生成求职建议</button>
+          </form>
+          <div id="jobs-output" class="jobs-output" aria-live="polite"></div>
+        </article>
+
+        <article id="tasks" class="panel task-panel" aria-labelledby="tasks-title">
+          <div class="panel-head inline">
+            <div>
+              <p class="eyebrow">AI城市任务与积分</p>
+              <h2 id="tasks-title">打卡、纠错、评价、举报和邀请商家入驻</h2>
+            </div>
+            <div class="points-pill"><strong id="points-total">120</strong>积分</div>
+          </div>
+          <div class="task-list" id="task-list" aria-live="polite"></div>
+          <div class="reward-row">
+            <span>可兑换：咖啡券</span>
+            <span>小吃券</span>
+            <span>景区优惠</span>
+            <span>活动名额</span>
+            <span>商家折扣</span>
+          </div>
+        </article>
+      </section>
+
+      <section id="alerts" class="dashboard-grid alert-service-grid">
+        <article class="panel alert-panel" aria-labelledby="alerts-title">
+          <div class="panel-head inline">
+            <div>
+              <p class="eyebrow">AI应急与城市提醒</p>
+              <h2 id="alerts-title">暴雨、高温、大风、施工、限流和交易风险主动提醒</h2>
+            </div>
+            <button class="secondary-button" id="refresh-alerts" type="button">刷新提醒</button>
+          </div>
+          <div id="alert-list" class="alert-list" aria-live="polite"></div>
+        </article>
+
+        <article id="services" class="panel public-service-panel" aria-labelledby="services-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">政务与公共服务预留入口</p>
+              <h2 id="services-title">办事指南、医院、学校、公交、停车、社区通知和志愿活动</h2>
+            </div>
+          </div>
+          <div class="public-service-grid" id="public-service-grid"></div>
+          <p class="service-note">政务内容必须来源可靠，不能冒充政府官方网站；涉及政策、证件和办事流程时，以官方渠道为准。</p>
+        </article>
+      </section>
+
+      <section id="reports" class="reports-grid" aria-labelledby="reports-title">
+        <div class="section-title">
+          <p class="eyebrow">DeepSeek实时更新</p>
+          <h2 id="reports-title">城市日报与城市周报</h2>
+        </div>
+        <article class="panel report-card">
+          <div class="panel-head inline">
+            <div>
+              <p class="eyebrow">AI城市日报</p>
+              <h3>今日首页推送</h3>
+            </div>
+            <button class="secondary-button" type="button" id="refresh-report">刷新日报</button>
+          </div>
+          <div id="daily-report" aria-live="polite"></div>
+        </article>
+        <article class="panel report-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI城市周报</p>
+              <h3>本周热榜</h3>
+            </div>
+          </div>
+          <div id="weekly-report"></div>
+        </article>
+      </section>
+
+      <section class="panel wide-panel declarations" aria-labelledby="declarations-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">平台底部统一声明</p>
+            <h2 id="declarations-title">AI内容、商业合作、隐私保护、免责声明和出行提醒</h2>
+          </div>
+        </div>
+        <div class="declaration-grid">
+          <article>
+            <h3>AI内容声明</h3>
+            <p>本平台部分内容由AI自动生成，仅供参考，不构成消费、出行、就业、医疗、法律或投资建议。</p>
+          </article>
+          <article>
+            <h3>商业合作声明</h3>
+            <p>商业合作内容必须明确标注“广告”“商业推荐”或“合作推广”，禁止虚假宣传、刷榜和伪装推荐。</p>
+          </article>
+          <article>
+            <h3>隐私保护声明</h3>
+            <p>平台严格保护用户个人信息，未经用户授权不会向第三方提供个人数据。</p>
+          </article>
+          <article>
+            <h3>免责声明</h3>
+            <p>用户发布内容仅代表发布者个人观点，违法违规、诈骗、侵权、虚假宣传等内容将被删除并依法处理。</p>
+          </article>
+          <article>
+            <h3>出行提醒</h3>
+            <p>路线、活动、营业时间、天气等信息可能发生变化，出发前请联系商家确认。</p>
+          </article>
+          <article>
+            <h3>数据安全声明</h3>
+            <p>平台按网络安全法、数据安全法和个人信息保护法设计隐私机制，用户数据仅存储于中国大陆境内服务器。</p>
+          </article>
+          <article>
+            <h3>地图与隐私说明</h3>
+            <p>地图仅展示公共或授权公开信息，用户定位仅用于本机附近推荐，不默认上传、不公开、不展示个人实时位置和历史轨迹。</p>
+          </article>
+          <article>
+            <h3>账号与数据权利</h3>
+            <p>支持账号注销、个人数据导出和个人信息删除申请；注销申请后7个工作日内删除相关个人数据。</p>
+          </article>
+          <article>
+            <h3>商家信息说明</h3>
+            <p>商家地址、电话和营业信息需由商家主动提交、授权或来自公开可靠渠道；如信息有误，可申请更正或删除。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>溧阳AI城市生活平台</strong>
+        <span>统一承载溧阳美食、路线、活动、地图、社区、商家、文化和未来城市服务。</span>
+      </div>
+      <a href="#home">回到顶部</a>
+    </footer>
+
+    <dialog class="publish-dialog" id="publish-dialog" aria-labelledby="dialog-title">
+      <form method="dialog" class="dialog-card" id="publish-form">
+        <div class="dialog-head">
+          <h2 id="dialog-title">发布本地信息</h2>
+          <button class="icon-button" value="cancel" type="submit" aria-label="关闭">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <label>
+          <span>类别</span>
+          <select name="category" required>
+            <option>活动</option>
+            <option>路况</option>
+            <option>优惠</option>
+            <option>闲置</option>
+            <option>拼车</option>
+            <option>求助</option>
+            <option>失物招领</option>
+          </select>
+        </label>
+        <label>
+          <span>标题</span>
+          <input name="title" required maxlength="30" placeholder="例如：周六茶文化市集招募" />
+        </label>
+        <label>
+          <span>内容</span>
+          <textarea name="detail" required maxlength="120" placeholder="地点、时间、费用、适合人群或注意事项"></textarea>
+        </label>
+        <button class="primary-button form-submit" type="submit" value="default">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m22 2-7 20-4-9-9-4Z" />
+            <path d="M22 2 11 13" />
+          </svg>
+          加入社区
+        </button>
+      </form>
+    </dialog>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
