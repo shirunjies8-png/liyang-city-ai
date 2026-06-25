@@ -1002,6 +1002,30 @@ p {
   padding-top: 12px;
 }
 
+.about-layout,
+.feedback-layout {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-layout .policy-card,
+.feedback-layout .policy-card {
+  min-height: 100%;
+}
+
+.future-banner {
+  background: #17211e;
+  border-radius: 8px;
+  color: #fffdf8;
+  line-height: 1.7;
+  padding: 16px;
+}
+
+.future-list {
+  margin-top: 12px;
+}
+
 .recommendation-strip {
   display: grid;
   gap: 12px;
@@ -2214,7 +2238,9 @@ textarea {
   .business-layout,
   .trust-layout,
   .upgrade-layout,
-  .culture-layout {
+  .culture-layout,
+  .about-layout,
+  .feedback-layout {
     grid-template-columns: 1fr;
   }
 
@@ -2338,6 +2364,8 @@ textarea {
 
   .platform-copies,
   .trust-grid,
+  .about-layout,
+  .feedback-layout,
   .map-rule-grid,
   .privacy-grid,
   .business-rule-grid,

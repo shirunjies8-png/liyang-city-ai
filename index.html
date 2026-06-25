@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>溧阳AI城市生活平台</title>
+    <title>溧阳本地生活智能推荐平台</title>
     <meta
       name="description"
       content="溧阳本地生活智能推荐平台，面向居民、游客和商家的真实本地生活信息入口。"
@@ -18,6 +18,10 @@
       </a>
       <nav class="nav-links" aria-label="页面导航">
         <a href="#home">AI首页</a>
+        <a href="#about">关于项目</a>
+        <a href="#future">未来规划</a>
+        <a href="#feedback">反馈纠错</a>
+        <a href="#declarations">隐私政策</a>
         <a href="#pulse">呼吸</a>
         <a href="#ambience">声景</a>
         <a href="#planner">路线</a>
@@ -96,11 +100,82 @@
               <span><strong id="route-count">7</strong>可生成路线</span>
             </div>
             <div class="home-note">
-              首页只保留高频入口，历史文化馆、AI城市日报、商家认领、AI拍照识别、游客模式、商家经营助手和成长系统放到后续阶段。
+              首页只保留当前正式展示版的高频入口；未来规划内容会保留在独立页面和资料文件中，不与当前上线能力混用。
             </div>
           </div>
         </aside>
         <div class="recommendation-strip" id="recommendation-strip" aria-live="polite"></div>
+      </section>
+
+      <section id="about" class="panel wide-panel about-panel" aria-labelledby="about-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">关于项目</p>
+            <h2 id="about-title">正式展示版与未来规划版双版本长期采用</h2>
+          </div>
+          <span class="ai-badge">先真实、后智能</span>
+        </div>
+        <div class="about-layout">
+          <article class="policy-card">
+            <strong>正式展示版</strong>
+            <p>项目名称：溧阳本地生活智能推荐平台。面向居民、游客和本地商家，当前只展示真实商家、真实路线、真实活动和真实反馈。</p>
+            <p>当前优先功能：首页、美食推荐、路线推荐、活动中心、商家展示、AI智能助手、关于项目、用户反馈、隐私政策、用户协议和免责声明。</p>
+          </article>
+          <article class="policy-card">
+            <strong>未来规划版</strong>
+            <p>项目名称：溧阳AI城市生活平台。保留 AI 城市生活平台、AI数字人导游、AI历史文化馆、AI城市日报、AI城市周报、AI成长系统和 AI 内容生态等长期规划。</p>
+            <p>未来规划永久保留，不删除、不覆盖；用于长期开发参考、产品路线规划和版本回滚参考。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="future" class="panel wide-panel future-panel" aria-labelledby="future-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">未来规划</p>
+            <h2 id="future-title">以下内容属于未来规划，目前正在持续开发中</h2>
+          </div>
+          <a class="secondary-button" href="#declarations">先看当前规则</a>
+        </div>
+        <div class="future-banner">
+          以下内容属于未来规划，目前正在持续开发中，具体开放时间以平台实际更新为准。当前上线版本不会夸大能力，也不会把未来功能当成已完成内容。
+        </div>
+        <div class="checklist-grid future-list" aria-label="未来规划清单">
+          <span>AI城市生活平台</span>
+          <span>AI数字人导游</span>
+          <span>AI历史文化馆</span>
+          <span>AI城市日报</span>
+          <span>AI城市周报</span>
+          <span>AI城市成长系统</span>
+          <span>AI游客模式</span>
+          <span>AI拍照识别</span>
+          <span>AI商家运营助手</span>
+          <span>AI内容生态系统</span>
+        </div>
+      </section>
+
+      <section id="feedback" class="panel wide-panel feedback-panel" aria-labelledby="feedback-title">
+        <div class="panel-head inline">
+          <div>
+            <p class="eyebrow">反馈纠错</p>
+            <h2 id="feedback-title">信息错误、商家停业、电话错误、地址错误都可以反馈</h2>
+          </div>
+          <button class="primary-button publish-trigger" type="button">提交反馈</button>
+        </div>
+        <div class="feedback-layout">
+          <article class="policy-card">
+            <strong>反馈入口</strong>
+            <p>信息错误、商家停业、电话错误、地址错误、路线错误、活动结束和其它问题，都会进入人工核实流程。</p>
+          </article>
+          <article class="policy-card">
+            <strong>处理流程</strong>
+            <p>反馈 → 人工核实 → 修改内容 → 更新记录。真实数据优先，虚假内容不进入推荐位。</p>
+          </article>
+          <article class="policy-card">
+            <strong>长期目标</strong>
+            <p>让平台持续更新真实内容，减少错误信息，逐步建立可信的本地生活数据体系。</p>
+          </article>
+        </div>
       </section>
 
       <section id="pulse" class="panel wide-panel pulse-panel" aria-labelledby="pulse-title">
@@ -1267,11 +1342,11 @@
         </article>
       </section>
 
-      <section class="panel wide-panel declarations" aria-labelledby="declarations-title">
+      <section id="declarations" class="panel wide-panel declarations" aria-labelledby="declarations-title">
         <div class="panel-head">
           <div>
-            <p class="eyebrow">平台底部统一声明</p>
-            <h2 id="declarations-title">AI内容、商业合作、隐私保护、免责声明和出行提醒</h2>
+            <p class="eyebrow">隐私政策、用户协议和免责声明</p>
+            <h2 id="declarations-title">AI内容、商业合作、隐私保护、用户协议、免责声明和出行提醒</h2>
           </div>
         </div>
         <div class="declaration-grid">
@@ -1284,8 +1359,12 @@
             <p>商业合作内容必须明确标注“广告”“商业推荐”或“合作推广”，禁止虚假宣传、刷榜和伪装推荐。</p>
           </article>
           <article>
-            <h3>隐私保护声明</h3>
-            <p>平台严格保护用户个人信息，未经用户授权不会向第三方提供个人数据。</p>
+            <h3>隐私政策</h3>
+            <p>平台严格保护用户个人信息，未经用户授权不会向第三方提供个人数据；定位默认仅用于本机附近推荐。</p>
+          </article>
+          <article>
+            <h3>用户协议</h3>
+            <p>使用平台即表示同意遵守社区规范、信息发布规则、审核规则与数据使用规则。</p>
           </article>
           <article>
             <h3>免责声明</h3>
@@ -1317,16 +1396,16 @@
 
     <footer class="site-footer">
       <div>
-        <strong>溧阳AI城市生活平台</strong>
-        <span>统一承载溧阳美食、路线、活动、地图、社区、商家、文化和未来城市服务。</span>
+        <strong>溧阳本地生活智能推荐平台</strong>
+        <span>当前正式展示版负责上线与运营，未来规划版保留在资料文件和独立页面中长期保存。</span>
       </div>
       <a href="#home">回到顶部</a>
     </footer>
 
-    <dialog class="publish-dialog" id="publish-dialog" aria-labelledby="dialog-title">
+      <dialog class="publish-dialog" id="publish-dialog" aria-labelledby="dialog-title">
       <form method="dialog" class="dialog-card" id="publish-form">
         <div class="dialog-head">
-          <h2 id="dialog-title">发布本地信息</h2>
+          <h2 id="dialog-title">发布本地信息 / 反馈纠错</h2>
           <button class="icon-button" value="cancel" type="submit" aria-label="关闭">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M18 6 6 18M6 6l12 12" />
@@ -1336,6 +1415,13 @@
         <label>
           <span>类别</span>
           <select name="category" required>
+            <option>信息错误</option>
+            <option>商家停业</option>
+            <option>电话错误</option>
+            <option>地址错误</option>
+            <option>路线错误</option>
+            <option>活动结束</option>
+            <option>其它问题</option>
             <option>活动</option>
             <option>路况</option>
             <option>优惠</option>
