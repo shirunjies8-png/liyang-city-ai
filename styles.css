@@ -1026,6 +1026,30 @@ p {
   margin-top: 12px;
 }
 
+#pulse,
+#ambience,
+#live,
+#voice,
+#hotrank,
+#community,
+#map,
+#privacy,
+#culture,
+#factory,
+#deepseek,
+#trust,
+#ops,
+#upgrade,
+#growth,
+#theme,
+#cockpit,
+#jobs,
+#tasks,
+#alerts,
+#services {
+  display: none !important;
+}
+
 .recommendation-strip {
   display: grid;
   gap: 12px;
@@ -1080,6 +1104,15 @@ p {
 .report-item p {
   color: var(--muted);
   margin-top: 8px;
+}
+
+.source-meta {
+  border-top: 1px solid var(--line);
+  color: #6b766f !important;
+  font-size: 12px;
+  line-height: 1.55;
+  margin-top: 10px !important;
+  padding-top: 8px;
 }
 
 .dashboard-grid,
@@ -1724,6 +1757,12 @@ textarea {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.merchant-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .trust-grid {

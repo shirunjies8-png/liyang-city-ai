@@ -355,25 +355,23 @@ const dynamicRanks = [
 
 const homeEntries = [
   ["今日推荐", "#discover", "看今天适合先去哪里。"],
-  ["天气与时间", "#pulse", "先根据天气和时段选玩法。"],
   ["AI本地助手", "#assistant", "直接问吃什么、去哪玩。"],
-  ["美食入口", "#food", "早餐、面馆、砂锅、夜宵都在这。"],
-  ["路线入口", "#planner", "半日、一日、两日路线直接生成。"],
-  ["活动入口", "#activities", "周末、雨天、夜间活动都能看。"],
-  ["地图入口", "#map", "只看公共点位和授权点位。"],
-  ["社区入口", "#community", "美食、摄影、骑行、拼车一起看。"],
-  ["商家入口", "#business", "店铺、活动、菜单和认领都在这里。"],
-  ["今日热榜", "#hotrank", "路线、餐厅、活动和打卡点热度。"],
-  ["AI城市日报", "#reports", "每天自动更新城市摘要。"],
+  ["美食推荐", "#food", "早餐、面馆、砂锅、夜宵。"],
+  ["路线推荐", "#planner", "按时间、预算和兴趣生成参考路线。"],
+  ["活动推荐", "#activities", "活动信息以主办方确认为准。"],
+  ["商家展示", "#business", "展示商家资料和纠错入口。"],
+  ["关于项目", "#about", "说明定位、来源和合规边界。"],
+  ["反馈纠错", "#feedback", "信息错误可以提交人工核实。"],
+  ["免责声明", "#declarations", "查看隐私、协议和出行提醒。"],
 ];
 
 const achievementStats = [
-  ["新增商家", 18],
-  ["新增活动", 12],
-  ["新增路线", 9],
-  ["新增用户", 286],
-  ["新增打卡", 432],
-  ["社区内容", 76],
+  ["新增商家", "暂无数据"],
+  ["新增活动", "暂无数据"],
+  ["新增路线", "暂无数据"],
+  ["用户数据", "暂无数据"],
+  ["反馈记录", "持续更新中"],
+  ["内容资料", "持续更新中"],
 ];
 
 const historicalFigures = [
@@ -390,26 +388,26 @@ const timeMachineStories = [
   ["2000", "天目湖、竹海和茶文化进入更多游客视野。"],
   ["2010", "周边短途游、民宿、农家乐和自驾路线快速增长。"],
   ["2020", "本地生活线上化，社区、商家和活动开始数字化。"],
-  ["2026", "AI城市生活平台把吃、玩、逛、服务和治理连成城市OS。"],
+  ["2026", "先建设真实、轻量、可信、可纠错的本地生活推荐平台。"],
 ];
 
 const growthLevels = [
-  ["Lv1", "城市信息平台"],
-  ["Lv2", "城市生活平台"],
-  ["Lv3", "智慧城市平台"],
-  ["Lv4", "AI城市平台"],
-  ["Lv5", "AI城市OS"],
+  ["V1.0", "本地生活推荐"],
+  ["V1.1", "反馈纠错"],
+  ["V1.2", "来源与声明"],
+  ["V2.0", "真实数据体系"],
+  ["V3.0", "AI能力逐步接入"],
 ];
 
 const cockpitStats = [
-  ["今日游客", 12860],
-  ["今日活动", 36],
-  ["今日路线", 128],
-  ["今日热榜", 24],
-  ["今日天气", 32],
-  ["消费热度", 89],
-  ["社区活跃度", 76],
-  ["商家活跃度", 68],
+  ["访问数据", "暂无数据"],
+  ["活动资料", "持续更新中"],
+  ["路线资料", "持续更新中"],
+  ["推荐数据", "暂无数据"],
+  ["天气信息", "第三方来源"],
+  ["消费数据", "暂无数据"],
+  ["反馈状态", "人工核实"],
+  ["商家资料", "待核实"],
 ];
 
 const upgradeIssues = [
@@ -578,9 +576,9 @@ function renderAiHome() {
   $("#season-label").textContent = seasonLabel();
   $("#ai-headline").textContent = profile.headline;
   $("#ai-summary").textContent = `${profile.summary}${timeNotes[state.time]}`;
-  $("#heat-index").textContent = profile.heat;
-  $("#new-count").textContent = 8 + profile.recs.length;
-  $("#route-count").textContent = $("#route-type")?.options.length || Object.keys(routeTemplates).length;
+  $("#heat-index").textContent = "暂无数据";
+  $("#new-count").textContent = "持续更新中";
+  $("#route-count").textContent = "待核实";
   $("#home-entry-grid").innerHTML = homeEntries
     .map(
       ([title, href, detail]) => `
@@ -598,6 +596,7 @@ function renderAiHome() {
           <span class="tag">${tag}</span>
           <h3>${title}</h3>
           <p>${detail}</p>
+          <p class="source-meta">来源：平台整理 / AI辅助生成 · 更新：${formatDate()} · 状态：待核实</p>
         </article>
       `,
     )
@@ -764,7 +763,8 @@ function renderAchievements() {
   $("#achievement-grid").innerHTML = achievementStats
     .map(([label, value], index) => {
       const bump = (Date.now() / 1000 + index * 7) % 19;
-      return `<article class="achievement-card"><strong>${Math.round(value + bump)}</strong><span>${label}</span></article>`;
+      const display = typeof value === "number" ? Math.round(value + bump) : value;
+      return `<article class="achievement-card"><strong>${display}</strong><span>${label}</span></article>`;
     })
     .join("");
 }
@@ -849,6 +849,13 @@ function generateRoute(formData) {
         `,
       )
       .join("")}
+    <article class="route-step">
+      <span class="tag">说明</span>
+      <div>
+        <h3>路线仅供参考</h3>
+        <p>来源：平台整理 / AI辅助生成 · 更新：${formatDate()} · 状态：待核实。出行前请自行确认天气、交通、营业时间、价格和安全情况。</p>
+      </div>
+    </article>
   `;
 }
 
@@ -856,8 +863,8 @@ function answerQuestion(question) {
   const q = question.toLowerCase();
   if (q.includes("好吃") || q.includes("吃什么")) return "今天可以按时间选：早餐看汤包早面，午餐选砂锅或面馆，下午适合白茶甜品和咖啡，夜间推荐城区夜食线。";
   if (q.includes("散步")) return "推荐天目湖周边步道、城区公园和老街短线。晴天傍晚优先湖边，雨天改城区咖啡加短步行。";
-  if (q.includes("停车")) return "停车优先看游客停车点、商家门口车位和游客服务中心周边点位；平台只展示公共或授权停车信息，出发前建议电话确认。";
-  if (q.includes("附近")) return "附近推荐会优先在本机使用定位，筛选附近商家、活动、停车场和公共服务点，不默认上传或公开你的实时位置。";
+  if (q.includes("停车")) return "停车建议优先查看商家公开说明或第三方地图导航信息，出发前建议电话确认。";
+  if (q.includes("附近")) return "附近推荐需要用户主动授权定位；当前展示版不保存用户历史轨迹，也不公开用户实时位置。";
   if (q.includes("拍照")) return "推荐茶田公路、竹林边缘、湖边栈道和乡路咖啡窗口。下午四点后光线更柔和。";
   if (q.includes("农家乐")) return "农家乐优先看是否有停车、儿童座椅、明码菜单和食品安全认证；竹海山脚和茶田周边更适合周末中午。";
   if (q.includes("露营")) return "优先选择可停车、有卫生间、可查询风力的轻露营点。高温和大风天建议改成湖边野餐或室内活动。";
@@ -885,6 +892,7 @@ function renderDiscover() {
           <span class="tag">${tag}</span>
           <h3>${title}</h3>
           <p>${detail}</p>
+          <p class="source-meta">来源：公开信息 / 平台整理 · 更新：${formatDate()} · 状态：待核实</p>
         </article>
       `,
     )
@@ -902,14 +910,15 @@ function renderFoods() {
   const visible = state.food === "全部" ? foods : foods.filter(([category]) => category === state.food);
   $("#food-list").innerHTML = visible
     .map(
-      ([category, title, detail, score]) => `
+      ([category, title, detail]) => `
         <article class="food-item">
           <span class="tag">${category}</span>
           <div>
             <h3>${title}</h3>
             <p>${detail}</p>
+            <p class="source-meta">来源：平台整理 / 商家提交待补充 · 更新：${formatDate()} · 状态：待核实</p>
           </div>
-          <span class="food-score">${score}</span>
+          <span class="food-score">待核实</span>
           <div class="food-actions">
             <button class="small-action" type="button" data-food-action="导航" data-title="${title}">导航</button>
             <button class="small-action" type="button" data-food-action="电话" data-title="${title}">电话</button>
@@ -930,6 +939,7 @@ function renderActivities() {
           <span class="tag">${tag}</span>
           <h3>${title}</h3>
           <p>${detail}</p>
+          <p class="source-meta">来源：平台整理 / 活动方提交待补充 · 更新：${formatDate()} · 状态：待核实</p>
         </article>
       `,
     )
@@ -1114,6 +1124,7 @@ function renderMerchant(formData) {
     <article class="generated-block">
       <h3>店铺主页介绍</h3>
       <p>${name}是一家面向溧阳本地居民和周边游客的${type}，主打${feature}。地址：${address}。营业时间：${hours}。电话：${phone}。</p>
+      <p class="source-meta">来源：商家提交 / 平台整理 · 更新：${formatDate()} · 状态：待核实</p>
     </article>
     <article class="generated-block">
       <h3>菜单/产品页面</h3>
@@ -1133,8 +1144,13 @@ function renderMerchant(formData) {
     </article>
     <article class="generated-block">
       <h3>招聘页面</h3>
-      <p>可生成岗位说明、薪资范围、工作时间和防骗提醒；招聘发布前需实名与风险审核。</p>
+      <p>当前展示版不开放招聘发布。后续如开放，必须经过实名认证、风险识别和人工审核。</p>
     </article>
+    <div class="merchant-actions">
+      <button class="small-action" type="button">我是店主</button>
+      <button class="small-action" type="button">申请修改资料</button>
+      <button class="small-action" type="button">申请删除资料</button>
+    </div>
     <div class="platform-copies">
       <article class="generated-block"><h3>百度推广</h3><p>搜索溧阳${type}，来${name}体验${feature}。</p></article>
       <article class="generated-block"><h3>抖音推广</h3><p>周末来溧阳，这家${type}把${feature}安排好了。</p></article>
@@ -1294,11 +1310,11 @@ function auditContent(formData) {
 function renderReports() {
   const profile = aiProfiles[state.weather];
   $("#daily-report").innerHTML = [
-    ["今日活动", profile.recs[2][1], profile.recs[2][2]],
-    ["新增店铺", "白茶咖啡和夜食小店", "建议进入今日推荐和美食地图。"],
-    ["热门路线", profile.recs[0][1], profile.recs[0][2]],
+    ["今日参考", profile.recs[2][1], profile.recs[2][2]],
+    ["商家信息", "暂无新增核实商家", "商家资料库持续更新中。"],
+    ["路线参考", profile.recs[0][1], profile.recs[0][2]],
     ["天气提醒", state.weather, profile.summary],
-    ["社区热点", profile.recs[3][1], profile.recs[3][2]],
+    ["信息状态", "持续更新中", "内容来源包括公开信息、商家提交、平台整理和AI辅助生成。"],
   ]
     .map(
       ([tag, title, detail]) => `
@@ -1307,6 +1323,7 @@ function renderReports() {
           <div>
             <h3>${title}</h3>
             <p>${detail}</p>
+            <p class="source-meta">本内容由AI辅助生成，仅供参考，不代表官方推荐。</p>
           </div>
         </article>
       `,
@@ -1314,10 +1331,10 @@ function renderReports() {
     .join("");
 
   $("#weekly-report").innerHTML = [
-    ["最火路线", "竹海茶田一日线"],
-    ["最火活动", "周末茶文化体验"],
-    ["最火餐厅", "城区砂锅小馆"],
-    ["最火社区内容", "骑行补给地图共建"],
+    ["内容来源", "公开信息、商家提交、用户反馈、平台整理"],
+    ["更新时间", formatDate()],
+    ["状态说明", "测试版，待核实内容不进入正式推荐位"],
+    ["纠错方式", "通过反馈入口提交信息错误、电话错误、地址错误或活动结束"],
   ]
     .map(
       ([tag, title]) => `
@@ -1325,7 +1342,7 @@ function renderReports() {
           <strong>${tag}</strong>
           <div>
             <h3>${title}</h3>
-            <p>自动汇总收藏、搜索、发布和天气联动信号。</p>
+            <p>当前阶段不展示虚构浏览量、收藏量、点赞量和报名量。</p>
           </div>
         </article>
       `,
